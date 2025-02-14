@@ -1,0 +1,170 @@
+1. تطبيق To-Do List (قائمة المهام):
+الهدف: تعلم إدارة الحالة في React، التعامل مع العناصر في الواجهة (UI)، وكيفية إضافة/إزالة المهام.
+المهارات المكتسبة:
+إدارة الحالة باستخدام useState.
+الفلترة والبحث بين العناصر.
+التعامل مع الأحداث (مثل النقر لإضافة أو حذف المهام).
+
+
+
+2. تطبيق To-Do List مع تخزين البيانات (LocalStorage أو Firebase):
+الهدف: تعلم حفظ البيانات في الذاكرة المحلية أو في قاعدة بيانات خارجية.
+المهارات المكتسبة:
+استخدام localStorage أو تكامل مع Firebase لتخزين البيانات.
+إدارة الحالة بشكل أكبر وتنسيق البيانات بين الواجهة والمخزن.
+التعامل مع العمليات غير المتزامنة (Asynchronous) مثل fetch أو async/await.
+
+
+
+
+3. تطبيق ملاحظات (Notes App):
+الهدف: تطبيق مشابه لقائمة المهام، ولكن مع إضافة ميزة تحرير الملاحظات وحذفها.
+المهارات المكتسبة:
+العمل مع القوائم المترابطة (nested lists) لتخزين الملاحظات.
+التعامل مع النصوص والمحتوى المتغير.
+تعلم إدارة واجهات المستخدم المتغيرة.
+
+
+
+4. تطبيق قائمة تسوق بسيطة (Shopping List):
+الهدف: بناء تطبيق يقوم بإضافة المنتجات إلى قائمة التسوق مع إظهار الأسعار وحساب المجموع.
+المهارات المكتسبة:
+إضافة عناصر إلى القائمة وحساب إجمالي الأسعار.
+التعامل مع المكونات (components) المختلفة لعرض المعلومات.
+
+
+5. تطبيقات مع إدارة الحالة المعقدة (مثل Counter أو Simple Calculator):
+الهدف: تعلم كيفية إدارة الحالة باستخدام useReducer أو Redux لمشاريع أكبر في المستقبل.
+المهارات المكتسبة:
+فهم الفرق بين useState وuseReducer.
+التعامل مع العمليات الحسابية أو العمليات المتقدمة في الواجهة.
+
+
+6. تطبيق مع واجهات API (API Integration Project):
+الهدف: دمج API خارجي (مثل API لعرض الأخبار أو الطقس) في تطبيقك.
+المهارات المكتسبة:
+التعامل مع البيانات من API واستخدام useEffect لتحميل البيانات.
+التعامل مع الردود غير المتزامنة (Asynchronous) وتحديث الواجهة بناءً على البيانات المستلمة.
+
+
+7. تطبيق مع تسجيل دخول (Login/Signup Form):
+الهدف: إنشاء نموذج لتسجيل الدخول والتسجيل مع التحقق من صحة البيانات.
+المهارات المكتسبة:
+إدارة النماذج باستخدام Formik أو React Hook Form.
+التحقق من صحة البيانات وتقديم رسائل خطأ.
+التعامل مع التوثيق (مثل OAuth أو Firebase Authentication).
+
+
+8. تطبيق للمراجعات والتقييمات (Review and Rating System):
+الهدف: إنشاء تطبيق يسمح للمستخدمين بتقديم التقييمات والمراجعات لمنتجات أو خدمات.
+المهارات المكتسبة:
+العمل مع المدخلات النصية (Text inputs) والتقييمات باستخدام النجوم أو التصنيف.
+إدارة البيانات المدخلة والتخزين (قد تستخدم Firebase أو أي API للتخزين).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+src/
+├── features/
+│   ├── auth/              # أول ميزة: تسجيل الدخول/التسجيل
+│   │   ├── components/
+│   │   │   ├── LoginForm.js
+│   │   │   ├── SignupForm.js
+│   │   │   └── PasswordRecovery.js
+│   │   ├── authSlice.js
+│   │   └── auth.css
+│   ├── products/          # ثاني ميزة: إدارة المنتجات (عرض/تفاصيل/بحث/فلترة)
+│   │   ├── components/
+│   │   │   ├── ProductList.js
+│   │   │   ├── ProductDetails.js
+│   │   │   ├── ProductSearch.js
+│   │   │   ├── ProductFilters.js
+│   │   │   └── Categories.js
+│   │   ├── hooks/
+│   │   │   └── useProducts.js
+│   │   ├── productsSlice.js
+│   │   ├── productsService.js
+│   │   └── products.css
+│   ├── cart/              # ثالث ميزة: عربة التسوق
+│   │   ├── components/
+│   │   │   ├── CartItem.js
+│   │   │   ├── CartSummary.js
+│   │   │   └── RemoveFromCart.js
+│   │   ├── cartSlice.js
+│   │   └── cart.css
+│   ├── favorites/         # رابع ميزة: قائمة المفضلة
+│   │   ├── components/
+│   │   │   ├── FavoriteItem.js
+│   │   │   └── FavoriteList.js
+│   │   ├── favoritesSlice.js
+│   │   └── favorites.css
+│   ├── orders/            # خامس ميزة: إدارة الطلبات
+│   │   ├── components/
+│   │   │   ├── OrderList.js
+│   │   │   └── OrderDetails.js
+│   │   ├── ordersSlice.js
+│   │   └── orders.css
+│   ├── payment/           # سادس ميزة: الدفع
+│   │   ├── components/
+│   │   │   └── PaymentForm.js
+│   │   ├── paymentSlice.js
+│   │   └── payment.css
+│   ├── reviews/           # سابع ميزة: التقييمات
+│   │   ├── components/
+│   │   │   ├── ReviewList.js
+│   │   │   └── AddReview.js
+│   │   ├── reviewsSlice.js
+│   │   └── reviews.css
+│   ├── admin/             # ثامن ميزة: لوحة تحكم الإدارة
+│   │   ├── components/
+│   │   │   ├── ManageProducts.js
+│   │   │   ├── ManageUsers.js
+│   │   │   └── Reports.js
+│   │   ├── adminSlice.js
+│   │   └── admin.css
+├── App.js                 # نقطة البداية: تركيب المكونات الرئيسية
+├── index.js               # بدء التطبيق
+├── assets/                # الأصول العامة
+│   ├── images/
+│   ├── fonts/
+│   └── icons/
+└── shared/                # المكونات والأدوات المشتركة
+    ├── components/
+    │   ├── Header.js
+    │   ├── Footer.js
+    │   └── Sidebar.js
+    ├── hooks/
+    │   └── useAuth.js
+    ├── utils/
+    │   └── api.js
