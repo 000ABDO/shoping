@@ -1,32 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Product({ jso }) {
-  let navigat = useNavigate();
+function Product({ jso, setProducts }) {
+  let navigate = useNavigate();
 
-  let lgoing = JSON.parse(localStorage.getItem("login"));
+  let lgoing = JSON.parse(localStorage.getItem("login")) || false; // تفادي الخطأ لو `localStorage` فارغ
 
   function Save(data) {
     localStorage.setItem("productDe", JSON.stringify(data));
-    navigat(`/details/${data.title}`);
+    navigate(`/details/${data.id}`);
   }
 
   const delet = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://67af9113dffcd88a67870b98.mockapi.io/products/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
-          alert("product deleted succsefuly");
+          alert("✅ Product deleted successfully!");
+          setProducts((prevProducts) => prevProducts.filter((p) => p.id !== id)); // تحديث القائمة بعد الحذف
         } else {
-          console.error("Failed to delete product");
+          console.error("❌ Failed to delete product");
         }
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error("❌ Error:", error));
   };
+
   const edit = (id) => {
-    navigat(`/edit/${id}`);
+    navigate(`/edit/${id}`);
   };
+
 
   return (
     <div className="col-12 col-md-3 col-lg-4 privhover">

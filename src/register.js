@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Register() {
-  let nav = useNavigate();
+  let navigate = useNavigate();
 
   let [data, setData] = useState({
     username: "",
@@ -11,33 +11,33 @@ export default function Register() {
   });
 
   const log = () => {
-    nav("/loginPage");
+    navigate("/loginPage");
   };
 
   const submit = async () => {
-    if (
-      data.username.trim() !== "" &&
-      data.email.trim() !== "" &&
-      data.password.length > 4
-    ) {
-      try {
-        let response = await fetch("http://localhost:5000/users/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
+    // ✅ التحقق من صحة البيانات
+    if (data.username.trim() === "" || data.email.trim() === "" || data.password.length < 5) {
+      alert("⚠️ Please enter a valid username, email, and a password of at least 5 characters.");
+      return;
+    }
 
-        let result = await response.json();
-        alert(
-          `Welcome ${data.username}, you will be redirected to the login page.`
-        );
-        nav("/loginPage");
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("Something went wrong. Please try again.");
+    try {
+      let response = await fetch("https://67af9113dffcd88a67870b98.mockapi.io/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to register. Please try again.");
       }
-    } else {
-      alert("Please enter valid data.");
+
+      let result = await response.json();
+      alert(`🎉 Welcome ${data.username}! You will be redirected to the login page.`);
+      navigate("/loginPage");
+    } catch (error) {
+      console.error("❌ Error submitting form:", error);
+      alert("⚠️ Something went wrong. Please try again later.");
     }
   };
 

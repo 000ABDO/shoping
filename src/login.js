@@ -15,7 +15,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/users/")
+    fetch("https://67af9113dffcd88a67870b98.mockapi.io/users/")
       .then((res) => res.json())
       .then((users) => {
         setallusers(users);

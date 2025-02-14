@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function Edit() {
-  let nav = useNavigate();
+  let navigate = useNavigate();
   let { id } = useParams();
 
   let [datab, setdata] = useState({
     image: "",
     title: "",
     text: "",
-    price: null,
+    price: "",
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://67af9113dffcd88a67870b98.mockapi.io/products/${id}`)
       .then((res) => {
-        if (!res.ok) throw new Error("falid to fetch data");
+        if (!res.ok) throw new Error("Failed to fetch data");
         return res.json();
       })
       .then((data) => setdata(data))
-      .catch((err) => console.error("Error  to fetch data", err));
+      .catch((err) => console.error("Error fetching data:", err));
   }, [id]);
 
   let editproduct = () => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://67af9113dffcd88a67870b98.mockapi.io/products/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(datab),
+      body: JSON.stringify({
+        ...datab,
+        price: Number(datab.price), // تأكد أن السعر رقم صحيح
+      }),
     })
       .then((res) => res.json())
-      .then((dat) => {
-        alert("its edited");
-        nav("/");
-      });
+      .then(() => {
+        alert("✅ Product updated successfully!");
+        navigate("/");
+      })
+      .catch((err) => console.error("Error updating product:", err));
   };
-
   return (
     <>
       <h1 className="text-center customMargin "> Create product page </h1>

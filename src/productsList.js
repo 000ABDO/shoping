@@ -8,7 +8,7 @@ export default function ProductsList() {
   let nav = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://67af9113dffcd88a67870b98.mockapi.io/products")
       .then((res) => res.json())
       .then((data) => {
         setproducts(data);

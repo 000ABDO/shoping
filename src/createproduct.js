@@ -6,39 +6,44 @@ export default function Create() {
     image: "",
     title: "",
     text: "",
-    price: null,
+    price: "",
   });
 
   const handelCreatepro = () => {
-    fetch("http://localhost:5000/products", {
+    fetch("https://67af9113dffcd88a67870b98.mockapi.io/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newproduct),
+      body: JSON.stringify({ 
+        ...newproduct, 
+        price: Number(newproduct.price) // تحويل السعر إلى رقم
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("Product added:", data);
-        alert("Product added successfully!");
+        alert("✅ Product added successfully!");
+        setnewproduct({ image: "", title: "", text: "", price: "" }); // إعادة تعيين النموذج
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error("❌ Error:", error));
   };
 
   return (
     <>
-      <h1 className="text-center customMargin ">Create product page</h1>
+      <h1 className="text-center customMargin">Create Product Page</h1>
 
       <div className="createform">
         <div className="mb-3">
           <label htmlFor="image" className="form-label">
-            enter a image address
+            Enter an Image Address
           </label>
           <input
             type="text"
             className="form-control"
             id="image"
-            placeholder="image address"
+            placeholder="Image Address"
+            value={newproduct.image}
             onChange={(e) =>
               setnewproduct((prev) => ({ ...prev, image: e.target.value }))
             }
@@ -47,13 +52,14 @@ export default function Create() {
 
         <div className="mb-3">
           <label htmlFor="productname" className="form-label">
-            product name
+            Product Name
           </label>
           <input
             type="text"
             className="form-control"
             id="productname"
             placeholder="Product Name"
+            value={newproduct.title}
             onChange={(e) =>
               setnewproduct((prev) => ({ ...prev, title: e.target.value }))
             }
@@ -61,38 +67,38 @@ export default function Create() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="Description" className="form-label">
-            price
+          <label htmlFor="price" className="form-label">
+            Price
           </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="Description"
-            placeholder="Product Description"
+            id="price"
+            placeholder="Product Price"
+            value={newproduct.price}
             onChange={(e) =>
-              setnewproduct((prev) => ({ ...prev, price: +e.target.value }))
+              setnewproduct((prev) => ({ ...prev, price: e.target.value }))
             }
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="Description" className="form-label">
+          <label htmlFor="description" className="form-label">
             Product Description
           </label>
           <input
             type="text"
             className="form-control"
-            id="Description"
+            id="description"
             placeholder="Product Description"
+            value={newproduct.text}
             onChange={(e) =>
               setnewproduct((prev) => ({ ...prev, text: e.target.value }))
             }
           />
         </div>
-        <button
-          className="text-center save-btn"
-          onClick={() => handelCreatepro()}
-        >
+
+        <button className="text-center save-btn" onClick={handelCreatepro}>
           Save Product
         </button>
       </div>
