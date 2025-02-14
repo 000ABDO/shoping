@@ -1,6 +1,6 @@
 {
   "name": "firstapp",
-  "homepage": "https://000ABDO.github.io/firstapp-frontend",
+  "homepage": "https://000abdo.github.io/firstapp-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,15 +15,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "gh-pages": "^5.0.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -57,5 +53,7 @@
       "tooltip": "Common"
     }
   ],
-  "proxy": "http://localhost:5000"
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
