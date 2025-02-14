@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./components/App/App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -16,8 +16,8 @@ export function Allprogram() {
         <Route path="/*" element={<App />} />
         <Route path="loginPage" element={<Login />} />
         <Route path="Register" element={<Register />} />
-        <Route path="/details/:title" element={<Details />} />
-        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="details/:title" element={<Details />} />
+        <Route path="edit/:id" element={<Edit />} />
       </Routes>
     </Router>
   );
