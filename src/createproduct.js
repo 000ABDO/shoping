@@ -1,7 +1,9 @@
 import { useState } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
+  let nav = useNavigate();
   let [newproduct, setnewproduct] = useState({
     image: "",
     title: "",
@@ -15,16 +17,17 @@ export default function Create() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
-        ...newproduct, 
-        price: Number(newproduct.price) // تحويل السعر إلى رقم
+      body: JSON.stringify({
+        ...newproduct,
+        price: Number(newproduct.price), // تحويل السعر إلى رقم
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("Product added:", data);
         alert("✅ Product added successfully!");
-        setnewproduct({ image: "", title: "", text: "", price: "" }); // إعادة تعيين النموذج
+        setnewproduct({ image: "", title: "", text: "", price: "" });
+        nav("/");
       })
       .catch((error) => console.error("❌ Error:", error));
   };
